@@ -99,7 +99,7 @@ func (w *Wasmer) Instantiate(
 	if err != nil {
 		return nil, 0, err
 	}
-	data, gasUsed, err := api.Instantiate(w.cache, code, paramBin, initMsg, &gasMeter, store, &goapi, querier, gasLimit)
+	data, gasUsed, err := api.Instantiate(w.cache, code, paramBin, initMsg, &gasMeter, &store, &goapi, &querier, gasLimit)
 	if err != nil {
 		return nil, gasUsed, err
 	}
@@ -137,7 +137,7 @@ func (w *Wasmer) Execute(
 	if err != nil {
 		return nil, 0, err
 	}
-	data, gasUsed, err := api.Handle(w.cache, code, paramBin, executeMsg, &gasMeter, store, &goapi, querier, gasLimit)
+	data, gasUsed, err := api.Handle(w.cache, code, paramBin, executeMsg, &gasMeter, &store, &goapi, &querier, gasLimit)
 	if err != nil {
 		return nil, gasUsed, err
 	}
@@ -165,7 +165,7 @@ func (w *Wasmer) Query(
 	gasMeter api.GasMeter,
 	gasLimit uint64,
 ) ([]byte, uint64, error) {
-	data, gasUsed, err := api.Query(w.cache, code, queryMsg, &gasMeter, store, &goapi, querier, gasLimit)
+	data, gasUsed, err := api.Query(w.cache, code, queryMsg, &gasMeter, &store, &goapi, &querier, gasLimit)
 	if err != nil {
 		return nil, 0, err
 	}
