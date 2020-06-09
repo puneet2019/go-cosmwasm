@@ -33,8 +33,19 @@ type LogAttribute struct {
 type CosmosMsg struct {
 	Bank    *BankMsg        `json:"bank,omitempty"`
 	Custom  json.RawMessage `json:"custom,omitempty"`
+	Message *MessageMsg     `json:"message,omitempty"`
 	Staking *StakingMsg     `json:"staking,omitempty"`
 	Wasm    *WasmMsg        `json:"wasm,omitempty"`
+}
+
+type MessageMsg struct {
+	Send *SendText `json:"send,omitempty"`
+}
+
+type SendText struct {
+	FromAddress string `json:"from_address"`
+	ToAddress   string `json:"to_address"`
+	Text        string `json:"text"`
 }
 
 type BankMsg struct {
